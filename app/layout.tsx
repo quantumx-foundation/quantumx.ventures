@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   keywords: [...site.keywords],
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,
-  publisher: site.parent.name,
+  publisher: site.name,
   category: 'technology',
   formatDetection: { telephone: false, address: false, email: false },
   // Pages set their own canonical. None here, so error pages do not claim the homepage.

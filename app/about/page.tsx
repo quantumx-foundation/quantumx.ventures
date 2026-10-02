@@ -12,16 +12,16 @@ import { JsonLd } from '@/components/json-ld';
 import { breadcrumbSchema, graph, webPageSchema, peopleSchema } from '@/lib/structured-data';
 
 const seo = {
-  title: 'About the Venture Studio of QuantumX',
-  socialTitle: 'The venture studio of QuantumX.',
+  title: 'About the Studio',
+  socialTitle: 'A venture studio for quantum technology.',
   description:
-    'QuantumX Ventures is the venture studio of QuantumX Foundation, a Bengaluru deep-tech company building quantum technology, quantum education and community.',
+    'QuantumX Ventures is a quantum technology venture studio in Bengaluru, building companies with researchers, founders and engineers in the QuantumX ecosystem.',
   path: '/about/',
 };
 
 export const metadata: Metadata = pageMetadata({
   ...seo,
-  image: { slug: 'about', alt: 'The venture studio of QuantumX. About QuantumX Ventures.' },
+  image: { slug: 'about', alt: 'A venture studio for quantum technology. About QuantumX Ventures.' },
 });
 
 const structuredData = graph(
@@ -36,8 +36,8 @@ export default function AboutPage() {
       <JsonLd data={structuredData} />
       <PageIntro
         label="About"
-        title="The venture studio of QuantumX."
-        lead={`${site.name} is where ${site.parent.name} turns quantum research, technology and talent into companies. It sits alongside QuantumX Technology, QuantumX School and QuantumX Community, and draws on all three.`}
+        title="A venture studio for quantum technology."
+        lead={`${site.name} turns quantum research, technology and talent into companies. It is part of the wider QuantumX ecosystem, alongside QuantumX Technology, QuantumX School and QuantumX Community, and draws on all three.`}
       />
 
       <EcosystemSection index="01" />
@@ -60,13 +60,13 @@ export default function AboutPage() {
             <div className="group relative aspect-[3/2] overflow-hidden bg-raised">
               <Image
                 src="/images/foundation-launch.webp"
-                alt="The QuantumX team on stage holding the QuantumX banner at the official launch of QuantumX Foundation"
+                alt="The QuantumX team on stage holding the QuantumX banner at the official launch of QuantumX in Bengaluru"
                 fill
                 sizes="(min-width: 1024px) 55vw, 100vw"
                 className="img-mono object-cover"
               />
             </div>
-            <figcaption className="mt-4 text-sm text-subtle">Official launch of QuantumX Foundation, Bengaluru.</figcaption>
+            <figcaption className="mt-4 text-sm text-subtle">Official launch of QuantumX, Bengaluru.</figcaption>
           </figure>
         </div>
       </Section>

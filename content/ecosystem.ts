@@ -14,8 +14,8 @@ export type Pillar = {
 };
 
 export const ecosystemIntro = {
-  heading: 'Part of a working quantum ecosystem',
-  body: 'QuantumX Foundation is a deep-tech company building an open, accessible and reliable quantum future. It designs quantum and post-quantum technology, trains quantum talent, and grows a global community around both. The studio is where that work becomes companies.',
+  heading: 'Built inside a working quantum ecosystem',
+  body: 'QuantumX Ventures works within the wider QuantumX ecosystem, which designs quantum and post-quantum technology, trains quantum talent and grows a global community around both. Every venture starts with access to that engineering depth, talent and network.',
 } as const;
 
 export const pillars: readonly Pillar[] = [
@@ -71,5 +71,5 @@ export const shippedTechnology: readonly { name: string; description: string; hr
 
 export const launchMilestone = {
   heading: 'Officially launched',
-  body: "QuantumX Foundation was officially launched by the Hon'ble Chief Minister of Karnataka, Shri D.K. Shivakumar, joining Karnataka's Quantum Mission.",
+  body: "QuantumX was officially launched by the Hon'ble Chief Minister of Karnataka, Shri D.K. Shivakumar, joining Karnataka's Quantum Mission.",
 } as const;

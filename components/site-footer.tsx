@@ -70,12 +70,12 @@ export function SiteFooter() {
               ))}
               <li>
                 <a
-                  href={site.parent.url}
+                  href={site.foundation.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group inline-flex min-h-11 items-center gap-1.5 text-ink/85 hover:text-ink md:min-h-8"
                 >
-                  <span className="link-underline">{site.parent.name}</span>
+                  <span className="link-underline">{site.foundation.name}</span>
                   <ArrowUpRight className="h-3 w-3 text-subtle group-hover:text-ink" />
                 </a>
               </li>
@@ -93,11 +93,7 @@ export function SiteFooter() {
 
         <div className="mt-10 flex flex-col gap-4 border-t border-line py-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
           <p className="max-w-md">
-            {site.name} is the venture studio of{' '}
-            <a href={site.parent.url} target="_blank" rel="noopener noreferrer" className="text-ink/85 hover:text-ink">
-              {site.parent.name}
-            </a>
-            .
+            {site.name}. A venture studio building the next generation of quantum companies.
           </p>
           <div className="flex items-center gap-6">
             <p>

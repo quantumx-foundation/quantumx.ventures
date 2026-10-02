@@ -13,7 +13,7 @@ export const site = {
   tagline: 'Building the next generation of quantum companies.',
   /** Default meta description. Keep under 160 characters. */
   description:
-    'QuantumX Ventures is the venture studio of QuantumX Foundation, building and scaling quantum technology companies with researchers, founders and engineers.',
+    'QuantumX Ventures is a venture studio for quantum technology, building and scaling quantum companies with the researchers, founders and engineers behind them.',
   /**
    * Contact inbox. There is no Ventures-specific address yet, so this uses the
    * QuantumX Foundation team inbox. Replace it when a Ventures inbox exists.
@@ -45,15 +45,16 @@ export const site = {
     'quantum sensing',
     'quantum software',
     'research commercialisation',
-    'QuantumX Foundation',
+    'QuantumX',
     'Bengaluru',
     'India',
   ],
-  parent: {
+  /** Sister organisation in the QuantumX ecosystem. Linked, not presented as a parent. */
+  foundation: {
     name: 'QuantumX Foundation',
     url: 'https://quantumx.foundation/',
   },
-  /** The parent organisation's privacy policy, which covers this site's forms. */
+  /** The QuantumX privacy policy, which covers this site's forms. */
   privacyUrl: 'https://quantumx.foundation/privacy/',
   social: [
     { label: 'X', handle: '@_Quantum_X_', href: 'https://x.com/_Quantum_X_' },

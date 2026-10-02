@@ -11,7 +11,7 @@ const abs = (path: string) => new URL(path, site.url).toString();
 export const ids = {
   organization: abs('/#organization'),
   website: abs('/#website'),
-  parent: `${site.parent.url}#organization`,
+  foundation: `${site.foundation.url}#organization`,
 };
 
 export function organizationSchema() {
@@ -27,7 +27,6 @@ export function organizationSchema() {
     slogan: site.tagline,
     email: site.email,
     address: { '@type': 'PostalAddress', ...site.address },
-    parentOrganization: { '@type': 'Organization', '@id': ids.parent, name: site.parent.name, url: site.parent.url },
     founder: people.map((p) => ({ '@type': 'Person', name: p.name, jobTitle: p.role })),
     knowsAbout: [
       'Quantum computing',
@@ -120,7 +119,7 @@ export function insightsListSchema(items: readonly Insight[]) {
         description: item.description,
         datePublished: item.date,
         url: item.href,
-        publisher: { '@type': 'Organization', '@id': ids.parent, name: item.publisher },
+        publisher: { '@type': 'Organization', '@id': ids.foundation, name: item.publisher },
       },
     })),
   };

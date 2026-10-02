@@ -8,7 +8,7 @@
 
 export const studioIntro = {
   statement:
-    'QuantumX Ventures is the venture studio of QuantumX Foundation. We start companies alongside the people doing the science, instead of waiting to invest in them later.',
+    'QuantumX Ventures is a venture studio for quantum technology. We start companies alongside the people doing the science, instead of waiting to invest in them later.',
   body: [
     'Quantum technology rarely fails for lack of good research. It stalls in the gap between a working result and a company that can carry it: a team, a product, a first customer, and the patience to get there.',
     'A venture studio exists to close that gap. We work with researchers, founders and engineers from the earliest stage, contributing people, technical work and company-building support, then stay involved as the venture grows.',

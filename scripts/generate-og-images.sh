@@ -45,7 +45,7 @@ PAGES=(
   "ventures;VENTURES;Companies built|in the studio."
   "thesis;THESIS;Where we|are looking."
   "insights;INSIGHTS;Notes on the|quantum economy."
-  "about;ABOUT;The venture studio|of QuantumX."
+  "about;ABOUT;A venture studio for|quantum technology."
   "contact;START A CONVERSATION;Tell us what|you are building."
 )
 

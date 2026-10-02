@@ -52,7 +52,7 @@ export function EcosystemSection({ index = '06', showShipped = true }: { index?:
           <div className="col-span-12 lg:col-span-3" data-reveal>
             <h3 className="eyebrow">Already built at QuantumX</h3>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-subtle">
-              Technology released by QuantumX Foundation. Evidence of how the team builds, not studio ventures.
+              Technology built across the QuantumX ecosystem. Evidence of how the team builds, not studio ventures.
             </p>
           </div>
           <ul className="col-span-12 border-b border-line lg:col-span-9">
