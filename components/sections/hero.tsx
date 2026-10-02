@@ -37,9 +37,8 @@ export function Hero() {
           className="animate-rise max-w-[11ch] text-mega font-light max-lg:text-[clamp(2.75rem,12.8vw,5.5rem)] lg:max-w-none lg:text-[min(7.2vw,12vh)]"
           style={{ ['--delay' as string]: '140ms' }}
         >
-          {/* Three set lines on desktop; natural wrapping on smaller screens. */}
-          <span className="lg:block">Some science</span> <span className="lg:block">deserves</span>{' '}
-          <span className="lg:block">a company.</span>
+          {/* Set lines on desktop; natural wrapping on smaller screens. */}
+          <span className="lg:block">Quantum,</span> <span className="lg:block">put to work.</span>
         </h1>
 
         {/* Mobile and tablet: the image sits in the flow below the headline. */}

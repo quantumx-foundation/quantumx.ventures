@@ -10,7 +10,7 @@ export const site = {
   shortName: 'QX Ventures',
   /** Canonical production URL. The Foundation site links to this domain. */
   url: 'https://quantumx.ventures',
-  tagline: 'Some science deserves a company.',
+  tagline: 'Quantum, put to work.',
   /** Default meta description. Keep under 160 characters. */
   description:
     'QuantumX Ventures is a venture studio for quantum technology, building and scaling quantum companies with the researchers, founders and engineers behind them.',
