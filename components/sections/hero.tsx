@@ -34,12 +34,12 @@ export function Hero() {
       <div className="container-site relative flex min-h-[100svh] flex-col pb-10 pt-[calc(var(--header-h)+clamp(2.5rem,9vh,7rem))] lg:min-h-[max(100svh,680px)]">
         <h1
           id="hero-title"
-          className="animate-rise max-w-[11ch] text-mega font-light lg:max-w-none lg:text-[min(5.5vw,10.5vh)]"
+          className="animate-rise max-w-[11ch] text-mega font-light max-lg:text-[clamp(2.75rem,12.8vw,5.5rem)] lg:max-w-none lg:text-[min(7.2vw,12vh)]"
           style={{ ['--delay' as string]: '140ms' }}
         >
           {/* Three set lines on desktop; natural wrapping on smaller screens. */}
-          <span className="lg:block">Building the next</span> <span className="lg:block">generation of</span>{' '}
-          <span className="lg:block">quantum companies.</span>
+          <span className="lg:block">Some science</span> <span className="lg:block">deserves</span>{' '}
+          <span className="lg:block">a company.</span>
         </h1>
 
         {/* Mobile and tablet: the image sits in the flow below the headline. */}

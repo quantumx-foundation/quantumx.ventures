@@ -10,7 +10,7 @@ export function ogImage(slug: OgImageSlug, alt: string) {
 
 export const homeOgImage = ogImage(
   'home',
-  'QuantumX Ventures: Building the next generation of quantum companies. A dilution refrigerator of a quantum computer beside the headline.',
+  'QuantumX Ventures: Some science deserves a company. A dilution refrigerator of a quantum computer beside the headline.',
 );
 
 /**
