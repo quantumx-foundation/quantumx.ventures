@@ -6,6 +6,6 @@ next-env.d.ts
 *.tsbuildinfo
 .DS_Store
 
-# Design references and source files, not part of the site
-source-images/
-qc-lab.png
+# Third-party design reference screenshots: keep local, never publish
+design/references/
+.cache

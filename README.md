@@ -32,6 +32,24 @@ Images live in `public/images/` as pre-compressed WebP. The static export has
 no image optimisation server, so resize and compress new images before adding
 them.
 
+## SEO and share images
+
+- Page titles, descriptions and share images are set per page with
+  `pageMetadata()` in `lib/metadata.ts`. Root defaults live in `app/layout.tsx`.
+- Structured data (Organization, WebSite, breadcrumbs, page types, people,
+  articles) is built from `content/` in `lib/structured-data.ts`.
+- Share images (1200x630) are in `public/og/`. The homepage image is the hero
+  screenshot in `design/source/og-home-hero-screenshot.png`. Replace it, then run
+  `npm run og` (needs ffmpeg) to regenerate all images.
+- WhatsApp, Discord, LinkedIn and X cache link previews. After changing a share
+  image, re-scrape with the LinkedIn Post Inspector or Facebook Sharing Debugger,
+  or rename the file to force a refresh.
+
+## Design files
+
+- `design/source/`: original images behind the optimised web assets.
+- `design/references/`: third-party reference screenshots. Git-ignored, never published.
+
 ## Forms
 
 Forms are handled by Netlify Forms and are registered from the static copies in

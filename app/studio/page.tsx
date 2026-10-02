@@ -7,17 +7,31 @@ import { ClosingCta } from '@/components/sections/closing-cta';
 import { Section, SectionHeading } from '@/components/ui';
 import { audiences, studioIntro } from '@/content/studio';
 import { pageMetadata } from '@/lib/metadata';
+import { JsonLd } from '@/components/json-ld';
+import { breadcrumbSchema, graph, webPageSchema } from '@/lib/structured-data';
+
+const seo = {
+  title: 'How Our Venture Studio Works',
+  socialTitle: 'A studio, not a fund.',
+  description:
+    'How QuantumX Ventures builds quantum companies from day zero: venture creation, founder collaboration, research commercialisation and product development.',
+  path: '/studio/',
+};
 
 export const metadata: Metadata = pageMetadata({
-  title: 'Studio',
-  description:
-    'How the QuantumX Ventures studio works: venture creation, founder collaboration, research commercialisation, technical product development and strategic support.',
-  path: '/studio/',
+  ...seo,
+  image: { slug: 'studio', alt: 'A studio, not a fund. QuantumX Ventures.' },
 });
+
+const structuredData = graph(
+  webPageSchema({ type: 'WebPage', path: seo.path, name: seo.title, description: seo.description, image: '/og/studio.jpg' }),
+  breadcrumbSchema([{ name: 'Studio', path: seo.path }]),
+);
 
 export default function StudioPage() {
   return (
     <>
+      <JsonLd data={structuredData} />
       <PageIntro label="Studio" title="A studio, not a fund." lead={studioIntro.statement} />
 
       <Section labelledBy="difference-title">

@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "npx serve out",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "og": "bash scripts/generate-og-images.sh"
   },
   "dependencies": {
     "next": "14.2.35",

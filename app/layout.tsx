@@ -4,6 +4,10 @@ import { site } from '@/content/site';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
 import { RevealProvider } from '@/components/reveal';
+import { JsonLd } from '@/components/json-ld';
+import { Analytics } from '@/components/analytics';
+import { homeOgImage } from '@/lib/metadata';
+import { graph, organizationSchema, websiteSchema } from '@/lib/structured-data';
 import './globals.css';
 
 // Poppins is the existing QuantumX Ventures brand typeface.
@@ -14,50 +18,48 @@ const poppins = Poppins({
   variable: '--font-poppins',
 });
 
-const title = `${site.name}: ${site.tagline.replace(/\.$/, '')}`;
+/** Search title for the homepage: brand plus what it is. */
+const defaultTitle = `${site.name} | Quantum Technology Venture Studio`;
+/** Link-preview title: the brand line, matching the share image. */
+const socialTitle = `${site.name}: ${site.tagline.replace(/\.$/, '')}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: title, template: `%s | ${site.name}` },
+  title: { default: defaultTitle, template: `%s | ${site.name}` },
   description: site.description,
   applicationName: site.name,
-  authors: [{ name: site.name }],
-  alternates: { canonical: '/' },
+  keywords: [...site.keywords],
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  publisher: site.parent.name,
+  category: 'technology',
+  formatDetection: { telephone: false, address: false, email: false },
+  // Pages set their own canonical. None here, so error pages do not claim the homepage.
   openGraph: {
     type: 'website',
     siteName: site.name,
     locale: 'en_US',
-    url: '/',
-    title,
+    title: socialTitle,
     description: site.description,
+    images: [homeOgImage],
   },
   twitter: {
     card: 'summary_large_image',
-    title,
+    site: site.twitterHandle,
+    title: socialTitle,
     description: site.description,
+    images: [homeOgImage],
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1, 'max-video-preview': -1 },
+  },
 };
 
 export const viewport: Viewport = {
   themeColor: '#0A0A09',
   colorScheme: 'dark',
-};
-
-const organizationJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: site.name,
-  url: site.url,
-  logo: `${site.url}/icon.png`,
-  description: site.description,
-  email: site.email,
-  parentOrganization: {
-    '@type': 'Organization',
-    name: site.parent.name,
-    url: site.parent.url,
-  },
-  sameAs: site.social.map((s) => s.href),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -81,10 +83,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-        />
+        <JsonLd data={graph(organizationSchema(), websiteSchema())} />
+        <Analytics />
       </body>
     </html>
   );

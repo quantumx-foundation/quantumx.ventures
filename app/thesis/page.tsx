@@ -4,17 +4,31 @@ import { ClosingCta } from '@/components/sections/closing-cta';
 import { Section, SectionHeading } from '@/components/ui';
 import { thesisAreas, thesisIntro, ventureCriteria } from '@/content/thesis';
 import { pageMetadata } from '@/lib/metadata';
+import { JsonLd } from '@/components/json-ld';
+import { breadcrumbSchema, graph, webPageSchema } from '@/lib/structured-data';
+
+const seo = {
+  title: 'Quantum Technology Venture Thesis',
+  socialTitle: 'Where we are looking.',
+  description:
+    'Where QuantumX Ventures is looking: quantum computing, quantum software, post-quantum security, quantum sensing, and enabling infrastructure such as photonics.',
+  path: '/thesis/',
+};
 
 export const metadata: Metadata = pageMetadata({
-  title: 'Thesis',
-  description:
-    'The areas of the quantum technology stack QuantumX Ventures is interested in: quantum computing, software, post-quantum security, sensing, and enabling infrastructure.',
-  path: '/thesis/',
+  ...seo,
+  image: { slug: 'thesis', alt: 'Where we are looking. The QuantumX Ventures thesis.' },
 });
+
+const structuredData = graph(
+  webPageSchema({ type: 'WebPage', path: seo.path, name: seo.title, description: seo.description, image: '/og/thesis.jpg' }),
+  breadcrumbSchema([{ name: 'Thesis', path: seo.path }]),
+);
 
 export default function ThesisPage() {
   return (
     <>
+      <JsonLd data={structuredData} />
       <PageIntro label="Thesis" title="Where we are looking." lead={thesisIntro.statement}>
         <p className="mt-6 text-sm text-subtle">{thesisIntro.note}</p>
       </PageIntro>

@@ -8,17 +8,32 @@ import { Section } from '@/components/ui';
 import { launchMilestone } from '@/content/ecosystem';
 import { site } from '@/content/site';
 import { pageMetadata } from '@/lib/metadata';
+import { JsonLd } from '@/components/json-ld';
+import { breadcrumbSchema, graph, webPageSchema, peopleSchema } from '@/lib/structured-data';
+
+const seo = {
+  title: 'About the Venture Studio of QuantumX',
+  socialTitle: 'The venture studio of QuantumX.',
+  description:
+    'QuantumX Ventures is the venture studio of QuantumX Foundation, a Bengaluru deep-tech company building quantum technology, quantum education and community.',
+  path: '/about/',
+};
 
 export const metadata: Metadata = pageMetadata({
-  title: 'About',
-  description:
-    'QuantumX Ventures is the venture studio of QuantumX Foundation, a Bengaluru-based deep-tech company building quantum technology, education and community.',
-  path: '/about/',
+  ...seo,
+  image: { slug: 'about', alt: 'The venture studio of QuantumX. About QuantumX Ventures.' },
 });
+
+const structuredData = graph(
+  webPageSchema({ type: 'AboutPage', path: seo.path, name: seo.title, description: seo.description, image: '/og/about.jpg' }),
+  breadcrumbSchema([{ name: 'About', path: seo.path }]),
+  peopleSchema(),
+);
 
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={structuredData} />
       <PageIntro
         label="About"
         title="The venture studio of QuantumX."

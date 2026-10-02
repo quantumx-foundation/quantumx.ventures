@@ -6,17 +6,31 @@ import { ArrowLink, Section, SectionHeading } from '@/components/ui';
 import { ventureCriteria } from '@/content/thesis';
 import { ventures } from '@/content/ventures';
 import { pageMetadata } from '@/lib/metadata';
+import { JsonLd } from '@/components/json-ld';
+import { breadcrumbSchema, graph, webPageSchema } from '@/lib/structured-data';
+
+const seo = {
+  title: 'Quantum Ventures and Portfolio',
+  socialTitle: 'Companies built in the studio.',
+  description:
+    'Quantum technology companies built in the QuantumX Ventures studio. The first ventures are in formation. See what we look for and how to bring us yours.',
+  path: '/ventures/',
+};
 
 export const metadata: Metadata = pageMetadata({
-  title: 'Ventures',
-  description:
-    'Quantum technology companies built in the QuantumX Ventures studio, and what we look for in the founders and technology behind them.',
-  path: '/ventures/',
+  ...seo,
+  image: { slug: 'ventures', alt: 'Companies built in the studio. QuantumX Ventures.' },
 });
+
+const structuredData = graph(
+  webPageSchema({ type: 'CollectionPage', path: seo.path, name: seo.title, description: seo.description, image: '/og/ventures.jpg' }),
+  breadcrumbSchema([{ name: 'Ventures', path: seo.path }]),
+);
 
 export default function VenturesPage() {
   return (
     <>
+      <JsonLd data={structuredData} />
       <PageIntro
         label="Ventures"
         title="Companies built in the studio."
