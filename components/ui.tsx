@@ -86,7 +86,7 @@ export function ArrowLink({
   return (
     <SmartLink
       href={href}
-      className={`group inline-flex items-center gap-2 text-[0.9375rem] font-normal text-ink ${className}`}
+      className={`group inline-flex min-h-11 items-center gap-2 text-[0.9375rem] font-normal text-ink ${className}`}
     >
       <span className="link-underline">{children}</span>
       {external ? (

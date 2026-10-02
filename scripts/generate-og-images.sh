@@ -32,9 +32,10 @@ done
 LIGHT="$FONTS/Poppins-Light.ttf"
 REGULAR="$FONTS/Poppins-Regular.ttf"
 
-# Homepage: fit the hero screenshot to 1200x630 without cropping.
+# Homepage: fit the hero screenshot to 1200x630 without cropping. A patch of clean
+# background copied from beside it masks the eyebrow label that has since been removed from the hero.
 ffmpeg -loglevel error -y -i "$ROOT/design/source/og-home-hero-screenshot.png" \
-  -vf "scale=-1:630:flags=lanczos,pad=1200:630:(ow-iw)/2:0:color=0x0A0A09" \
+  -filter_complex "[0:v]scale=-1:630:flags=lanczos,pad=1200:630:(ow-iw)/2:0:color=0x0A0A09,split[base][src];[src]crop=290:28:430:84[patch];[base][patch]overlay=118:84" \
   -q:v 2 "$OUT/home.jpg"
 echo "public/og/home.jpg"
 

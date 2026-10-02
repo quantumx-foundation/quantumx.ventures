@@ -22,7 +22,7 @@ export function InsightsBrowser({ items, kinds }: { items: readonly Insight[]; k
               type="button"
               aria-pressed={selected}
               onClick={() => setActive(kind)}
-              className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition-colors duration-300 ${
+              className={`inline-flex min-h-11 items-center gap-2 rounded-full border px-4 text-sm transition-colors duration-300 ${
                 selected ? 'border-ink bg-ink text-paper' : 'border-line text-ink/85 hover:border-ink hover:text-ink'
               }`}
             >

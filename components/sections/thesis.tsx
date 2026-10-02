@@ -44,7 +44,7 @@ export function ThesisSection({ index = '03' }: { index?: string }) {
                       <p className="mt-3 max-w-lg text-[1.0625rem] leading-relaxed text-muted">{area.summary}</p>
                     </div>
                   </div>
-                  <span className="hidden shrink-0 rounded-full border border-line px-3 py-1 text-[0.6875rem] uppercase tracking-[0.12em] text-muted sm:inline-block">
+                  <span className="hidden shrink-0 rounded-full border border-line px-3 py-1 text-[0.75rem] uppercase tracking-[0.12em] text-muted sm:inline-block">
                     {area.status}
                   </span>
                 </div>

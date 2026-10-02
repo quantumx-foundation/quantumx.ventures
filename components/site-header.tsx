@@ -78,7 +78,7 @@ export function SiteHeader() {
         }`}
       >
         <div className="container-site flex h-[var(--header-h)] items-center justify-between gap-6">
-          <Link href="/" className="relative z-10 -m-2 p-2" aria-label={`${site.name}, home`}>
+          <Link href="/" className="relative z-10 -mx-2 flex min-h-11 items-center px-2" aria-label={`${site.name}, home`}>
             <Logo />
           </Link>
   
@@ -164,8 +164,8 @@ export function SiteHeader() {
               <ArrowRight className="h-4 w-4" />
             </Link>
             <p className="mt-6 text-sm text-muted">
-              <a href={`mailto:${site.email}`} className="link-underline">
-                {site.email}
+              <a href={`mailto:${site.email}`} className="group inline-flex min-h-11 items-center">
+                <span className="link-underline">{site.email}</span>
               </a>
             </p>
           </div>

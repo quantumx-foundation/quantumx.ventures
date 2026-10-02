@@ -85,6 +85,8 @@
   }
 
   .link-underline:hover,
+  .group:hover .link-underline,
+  .group:focus-visible .link-underline,
   .link-underline[aria-current='page'] {
     background-size: 100% 1px;
   }

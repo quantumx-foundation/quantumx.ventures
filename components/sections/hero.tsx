@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { site } from '@/content/site';
 import { ButtonLink } from '../ui';
 import { ArrowDown } from '../icons';
 
@@ -33,14 +32,9 @@ export function Hero() {
       </div>
 
       <div className="container-site relative flex min-h-[100svh] flex-col pb-10 pt-[calc(var(--header-h)+clamp(2.5rem,9vh,7rem))] lg:min-h-[max(100svh,680px)]">
-        <p className="eyebrow animate-rise flex items-center gap-3" style={{ ['--delay' as string]: '60ms' }}>
-          <span className="inline-block h-1.5 w-1.5 rounded-full bg-copper" aria-hidden="true" />
-          The venture studio of {site.parent.name}
-        </p>
-
         <h1
           id="hero-title"
-          className="animate-rise mt-8 max-w-[11ch] text-mega font-light lg:max-w-none lg:text-[min(5.5vw,10.5vh)]"
+          className="animate-rise max-w-[11ch] text-mega font-light lg:max-w-none lg:text-[min(5.5vw,10.5vh)]"
           style={{ ['--delay' as string]: '140ms' }}
         >
           {/* Three set lines on desktop; natural wrapping on smaller screens. */}
@@ -80,7 +74,7 @@ export function Hero() {
           <div className="col-span-12 hidden items-end justify-between lg:col-span-7 lg:flex">
             <a
               href="#studio"
-              className="animate-rise ml-[18%] flex items-center gap-3 text-sm text-muted transition-colors hover:text-ink"
+              className="animate-rise ml-[18%] flex min-h-11 items-center gap-3 text-sm text-muted transition-colors hover:text-ink"
               style={{ ['--delay' as string]: '420ms' }}
             >
               <ArrowDown className="h-5 w-5" />

@@ -53,8 +53,8 @@ export default function ContactPage() {
               <div>
                 <dt className="eyebrow">Email</dt>
                 <dd className="mt-3">
-                  <a href={`mailto:${site.email}`} className="link-underline text-[1.0625rem]">
-                    {site.email}
+                  <a href={`mailto:${site.email}`} className="group inline-flex min-h-11 items-center text-[1.0625rem]">
+                    <span className="link-underline">{site.email}</span>
                   </a>
                 </dd>
               </div>

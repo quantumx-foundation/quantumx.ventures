@@ -56,7 +56,7 @@ export function PersonCard({ person }: { person: Person }) {
       <h3 className="mt-5 text-[1.125rem] font-normal tracking-[-0.01em]">{person.name}</h3>
       <p className="mt-1 text-[0.9375rem] text-muted">{person.role}</p>
       <p className="mt-4 text-[0.9375rem] leading-relaxed text-ink/75">{person.summary}</p>
-      <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+      <ul className="mt-3 flex flex-wrap gap-x-5 text-sm">
         {[
           { label: 'Profile', href: person.profileUrl },
           { label: 'LinkedIn', href: person.linkedin },
@@ -69,7 +69,7 @@ export function PersonCard({ person }: { person: Person }) {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-muted transition-colors hover:text-ink"
+                className="inline-flex min-h-11 min-w-11 items-center gap-1 text-muted transition-colors hover:text-ink"
                 aria-label={`${person.name} on ${link.label === 'Profile' ? 'QuantumX Foundation' : link.label}`}
               >
                 <span className="link-underline">{link.label}</span>

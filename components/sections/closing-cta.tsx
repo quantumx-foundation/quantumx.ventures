@@ -25,8 +25,11 @@ export function ClosingCta({
                 <ButtonLink href="/contact/" variant="solid">
                   Start a conversation
                 </ButtonLink>
-                <a href={`mailto:${site.email}`} className="link-underline text-[0.9375rem] text-muted hover:text-ink">
-                  or email {site.email}
+                <a
+                  href={`mailto:${site.email}`}
+                  className="group inline-flex min-h-11 items-center text-[0.9375rem] text-muted hover:text-ink"
+                >
+                  <span className="link-underline">or email {site.email}</span>
                 </a>
               </div>
             </div>

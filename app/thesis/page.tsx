@@ -41,7 +41,7 @@ export default function ThesisPage() {
                 <li key={area.slug}>
                   <a
                     href={`#${area.slug}`}
-                    className="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm text-ink/85 transition-colors hover:border-ink hover:text-ink"
+                    className="inline-flex min-h-11 items-center gap-2 rounded-full border border-line px-4 text-sm text-ink/85 transition-colors hover:border-ink hover:text-ink"
                   >
                     <span className="tabular-nums text-subtle">{area.number}</span>
                     {area.title}
@@ -68,7 +68,7 @@ export default function ThesisPage() {
                   {area.number}
                 </p>
                 <span
-                  className="rounded-full border border-line px-3 py-1 text-[0.6875rem] uppercase tracking-[0.12em] text-muted"
+                  className="rounded-full border border-line px-3 py-1 text-[0.75rem] uppercase tracking-[0.12em] text-muted"
                   data-reveal
                 >
                   {area.status}

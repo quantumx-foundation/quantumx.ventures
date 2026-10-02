@@ -62,7 +62,7 @@ export function InsightList({
               <time dateTime={item.date} className="text-eyebrow uppercase tabular-nums text-muted">
                 {formatInsightDate(item.date)}
               </time>
-              <span className="rounded-full border border-ink/30 px-2.5 py-0.5 text-[0.6875rem] uppercase tracking-[0.12em] text-ink/80">
+              <span className="rounded-full border border-ink/30 px-2.5 py-0.5 text-[0.75rem] uppercase tracking-[0.12em] text-ink/80">
                 {item.kind}
               </span>
             </div>
