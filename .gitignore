@@ -1,0 +1,11 @@
+node_modules
+.next
+out
+.netlify
+next-env.d.ts
+*.tsbuildinfo
+.DS_Store
+
+# Design references and source files, not part of the site
+source-images/
+qc-lab.png

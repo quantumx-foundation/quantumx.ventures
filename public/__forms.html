@@ -1,0 +1,40 @@
+<!--
+  Static form definitions for Netlify Forms detection.
+  The visible forms are rendered by React, which Netlify's build-time parser
+  cannot read, so these hidden copies register them. Keep the field names in
+  sync with components/contact-form.tsx and components/updates-form.tsx.
+
+  "waitlist" is the form name used by the original QuantumX Ventures waitlist
+  page, kept so existing submissions and notifications continue in one place.
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>Netlify form detection</title>
+  </head>
+  <body>
+    <form name="venture-inquiry" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="venture-inquiry" />
+      <input name="name" />
+      <input type="email" name="email" />
+      <input name="organisation" />
+      <select name="role">
+        <option>Founder</option>
+        <option>Researcher</option>
+        <option>Technical team</option>
+        <option>Partner or investor</option>
+        <option>Other</option>
+      </select>
+      <textarea name="message"></textarea>
+      <input name="bot-field" />
+    </form>
+
+    <form name="waitlist" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="waitlist" />
+      <input type="email" name="email" />
+      <input name="bot-field" />
+    </form>
+  </body>
+</html>
