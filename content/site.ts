@@ -13,7 +13,7 @@ export const site = {
   tagline: 'Quantum, put to work.',
   /** Default meta description. Keep under 160 characters. */
   description:
-    'QuantumX Ventures is a venture studio for quantum technology, building and scaling quantum companies with the researchers, founders and engineers behind them.',
+    'Quantum, put to work. QuantumX Ventures is a venture studio building quantum technology companies with the researchers, founders and engineers behind them.',
   /**
    * Contact inbox. There is no Ventures-specific address yet, so this uses the
    * QuantumX Foundation team inbox. Replace it when a Ventures inbox exists.

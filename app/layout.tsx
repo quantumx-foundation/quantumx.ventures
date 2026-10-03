@@ -18,8 +18,8 @@ const poppins = Poppins({
   variable: '--font-poppins',
 });
 
-/** Search title for the homepage: brand plus what it is. */
-const defaultTitle = `${site.name} | Quantum Technology Venture Studio`;
+/** Search title for the homepage: brand, tagline and what it is. */
+const defaultTitle = `${site.name}: ${site.tagline.replace(/\.$/, '')} | Venture Studio`;
 /** Link-preview title: the brand line, matching the share image. */
 const socialTitle = `${site.name}: ${site.tagline.replace(/\.$/, '')}`;
 

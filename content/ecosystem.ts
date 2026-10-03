@@ -22,7 +22,7 @@ export const pillars: readonly Pillar[] = [
   {
     number: '01',
     title: 'QuantumX Ventures',
-    description: 'The venture studio, building the next generation of quantum companies.',
+    description: 'The venture studio, putting quantum technology to work in new companies.',
     forVentures: 'Venture creation, founder collaboration and company building.',
     href: '/',
     current: true,

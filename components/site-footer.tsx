@@ -93,7 +93,7 @@ export function SiteFooter() {
 
         <div className="mt-10 flex flex-col gap-4 border-t border-line py-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
           <p className="max-w-md">
-            {site.name}. A venture studio building the next generation of quantum companies.
+            {site.name}. {site.tagline} A venture studio for quantum technology.
           </p>
           <div className="flex items-center gap-6">
             <p>
