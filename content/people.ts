@@ -43,7 +43,7 @@ export const people: readonly Person[] = [
     name: 'Muhammed Ameen Sulaiman',
     role: 'Co-Founder & CTO',
     summary:
-      'Works across QuantumX technology, products and digital infrastructure, turning research and technical concepts into tools and platforms people can use.',
+      'Leads technology, product and engineering at QuantumX, from system architecture to deployment. Works with researchers and engineers to turn quantum research into platforms, developer infrastructure and research tooling.',
     photo: {
       src: '/images/people/ameen.webp',
       alt: 'Portrait of Muhammed Ameen Sulaiman',
@@ -58,7 +58,7 @@ export const people: readonly Person[] = [
     name: 'Abdul Samad',
     role: 'Co-Founder & Venture Architect',
     summary:
-      'Leads how QuantumX turns ambitious technology into new ventures, products and partnerships. Founder of Givvest and co-founder of Ente Ward.',
+      'Designs and leads the QuantumX venture pipeline, from spotting where ambitious technology can become a company to forming the products and partnerships around it.',
     photo: {
       src: '/images/people/samad.webp',
       alt: 'Portrait of Abdul Samad',
