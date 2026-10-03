@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { home } from '@/content/home';
 import { ButtonLink } from '../ui';
 import { ArrowDown } from '../icons';
 
@@ -56,8 +57,7 @@ export function Hero() {
         <div className="mt-auto grid grid-cols-12 gap-x-6 gap-y-8 pt-14 lg:pt-10">
           <div className="col-span-12 md:col-span-8 lg:col-span-5">
             <p className="animate-rise text-lead text-ink/80" style={{ ['--delay' as string]: '240ms' }}>
-              We work with researchers, founders and engineers to turn scientific breakthroughs into companies, bringing
-              the technology, the team and the commercial path together from day zero.
+              {home.hero.line}
             </p>
             <div
               className="animate-rise mt-9 flex flex-col gap-3 sm:flex-row"

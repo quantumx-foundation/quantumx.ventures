@@ -1,34 +1,5 @@
-import { formatInsightDate, insights, sortedInsights, type Insight } from '@/content/insights';
+import { formatInsightDate, type Insight } from '@/content/insights';
 import { ArrowUpRight } from '../icons';
-import { ButtonLink, Section } from '../ui';
-
-export function InsightsSection({ index = '08' }: { index?: string }) {
-  const featured = sortedInsights(insights.filter((i) => i.featured)).slice(0, 3);
-
-  return (
-    <Section labelledBy="insights-title">
-      <div className="grid grid-cols-12 gap-x-6 gap-y-14">
-        <div className="col-span-12 lg:col-span-4">
-          <div className="lg:sticky lg:top-[calc(var(--header-h)+3rem)]">
-            <p className="eyebrow flex gap-3" data-reveal>
-              <span className="text-subtle">{index}</span>
-              <span>Insights</span>
-            </p>
-            <h2 id="insights-title" className="mt-8 text-display font-light" data-reveal>
-              Notes on the quantum economy.
-            </h2>
-            <div className="mt-10" data-reveal>
-              <ButtonLink href="/insights/">All insights</ButtonLink>
-            </div>
-          </div>
-        </div>
-        <div className="col-span-12 lg:col-span-8">
-          <InsightList items={featured} headingLevel="h3" />
-        </div>
-      </div>
-    </Section>
-  );
-}
 
 export function InsightList({
   items,

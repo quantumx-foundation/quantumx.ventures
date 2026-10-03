@@ -1,23 +1,7 @@
 import Image from 'next/image';
 import { ventures, type Venture } from '@/content/ventures';
 import { ArrowUpRight } from '../icons';
-import { ArrowLink, ButtonLink, Section, SectionHeading } from '../ui';
-
-export function VenturesSection({ index = '04' }: { index?: string }) {
-  return (
-    <Section labelledBy="ventures-title">
-      <SectionHeading index={index} label="Ventures" title="Companies built in the studio." id="ventures-title" />
-      <div className="mt-16 lg:mt-24">
-        <VentureList />
-      </div>
-      {ventures.length > 0 ? (
-        <div className="mt-12" data-reveal>
-          <ArrowLink href="/ventures/">All ventures</ArrowLink>
-        </div>
-      ) : null}
-    </Section>
-  );
-}
+import { ButtonLink } from '../ui';
 
 /** Renders the venture grid, or an honest "in formation" state while the list is empty. */
 export function VentureList({ items = ventures }: { items?: readonly Venture[] }) {

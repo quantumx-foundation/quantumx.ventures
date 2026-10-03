@@ -1,44 +1,4 @@
-import { studioIntro, studioVsFund } from '@/content/studio';
-import { ArrowLink } from '../ui';
-
-export function StudioIntro({ showLink = true }: { showLink?: boolean }) {
-  return (
-    <section id="studio" aria-labelledby="studio-title" className="border-t border-line py-[clamp(5rem,11vw,10rem)]">
-      <div className="container-site">
-        <div className="grid grid-cols-12 gap-x-6 gap-y-10">
-          <p className="eyebrow col-span-12 flex gap-3 lg:col-span-3" data-reveal>
-            <span className="text-subtle">01</span>
-            <span>The studio</span>
-          </p>
-          <h2 id="studio-title" className="col-span-12 text-statement font-light lg:col-span-9" data-reveal>
-            {studioIntro.statement}
-          </h2>
-        </div>
-
-        <div className="mt-16 grid grid-cols-12 gap-x-6 gap-y-8 lg:mt-24">
-          {studioIntro.body.map((p, i) => (
-            <p
-              key={i}
-              className={`col-span-12 text-lead text-muted md:col-span-6 lg:col-span-4 ${i === 0 ? 'lg:col-start-4' : ''}`}
-              data-reveal
-              style={{ ['--reveal-delay' as string]: `${i * 90}ms` }}
-            >
-              {p}
-            </p>
-          ))}
-        </div>
-
-        <StudioComparison className="mt-20 lg:mt-28" />
-
-        {showLink ? (
-          <div className="mt-14 lg:ml-[25%]" data-reveal>
-            <ArrowLink href="/studio/">How the studio works</ArrowLink>
-          </div>
-        ) : null}
-      </div>
-    </section>
-  );
-}
+import { studioVsFund } from '@/content/studio';
 
 export function StudioComparison({ className = '' }: { className?: string }) {
   const columns = [studioVsFund.fund, studioVsFund.studio];
