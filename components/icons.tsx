@@ -31,3 +31,11 @@ export function Plus({ className = 'h-4 w-4' }: IconProps) {
     </svg>
   );
 }
+
+export function ChevronDown({ className = 'h-4 w-4' }: IconProps) {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" className={className} aria-hidden="true" focusable="false">
+      <path d="M5 7.5 10 12.5l5-5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}

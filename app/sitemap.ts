@@ -17,6 +17,7 @@ const routes: { path: string; priority: number; changeFrequency: 'weekly' | 'mon
   { path: '/insights/', priority: 0.7, changeFrequency: 'weekly', lastModified: latestInsight },
   { path: '/about/', priority: 0.7, changeFrequency: 'monthly' },
   { path: '/contact/', priority: 0.6, changeFrequency: 'monthly' },
+  { path: '/foundership-apply/', priority: 0.7, changeFrequency: 'monthly' },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

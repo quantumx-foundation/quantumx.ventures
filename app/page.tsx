@@ -4,6 +4,7 @@ import {
   HomeCapabilities,
   HomeCta,
   HomeEcosystem,
+  HomeFoundership,
   HomeInsights,
   HomePeople,
   HomeProcess,
@@ -37,6 +38,7 @@ export default function HomePage() {
       <HomeCapabilities />
       <HomeThesis />
       <HomeVentures />
+      <HomeFoundership />
       <HomeProcess />
       <HomeEcosystem />
       <HomePeople />

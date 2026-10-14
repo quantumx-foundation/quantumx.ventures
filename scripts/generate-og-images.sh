@@ -46,6 +46,7 @@ PAGES=(
   "insights;INSIGHTS;Notes on the|quantum economy."
   "about;ABOUT;A venture studio for|quantum technology."
   "contact;START A CONVERSATION;Tell us what|you are building."
+  "foundership;FOUNDERSHIP PROGRAM;Apply to build|with QuantumX."
 )
 
 for entry in "${PAGES[@]}"; do

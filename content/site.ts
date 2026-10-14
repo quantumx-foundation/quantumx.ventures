@@ -71,6 +71,7 @@ export type NavItem = { label: string; href: string };
 export const primaryNav: readonly NavItem[] = [
   { label: 'Studio', href: '/studio/' },
   { label: 'Ventures', href: '/ventures/' },
+  { label: 'Foundership', href: '/foundership-apply/' },
   { label: 'Thesis', href: '/thesis/' },
   { label: 'Insights', href: '/insights/' },
   { label: 'About', href: '/about/' },

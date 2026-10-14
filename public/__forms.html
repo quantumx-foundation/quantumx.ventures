@@ -2,7 +2,8 @@
   Static form definitions for Netlify Forms detection.
   The visible forms are rendered by React, which Netlify's build-time parser
   cannot read, so these hidden copies register them. Keep the field names in
-  sync with components/contact-form.tsx and components/updates-form.tsx.
+  sync with components/contact-form.tsx, components/foundership-form.tsx
+  and components/updates-form.tsx.
 
   "waitlist" is the form name used by the original QuantumX Ventures waitlist
   page, kept so existing submissions and notifications continue in one place.
@@ -28,6 +29,57 @@
         <option>Other</option>
       </select>
       <textarea name="message"></textarea>
+      <input name="bot-field" />
+    </form>
+
+    <form name="foundership" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="foundership" />
+      <input name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input name="location" />
+      <input name="company" />
+      <select name="stage">
+        <option>Idea</option>
+        <option>Research result</option>
+        <option>Prototype</option>
+        <option>Early customers</option>
+        <option>Revenue</option>
+      </select>
+      <select name="focusArea">
+        <option>Quantum computing</option>
+        <option>Quantum software</option>
+        <option>Post-quantum security</option>
+        <option>Quantum sensing</option>
+        <option>Infrastructure and enabling technology</option>
+        <option>Other</option>
+      </select>
+      <select name="teamSize">
+        <option>Solo founder</option>
+        <option>2–3 people</option>
+        <option>4 or more</option>
+      </select>
+      <select name="commitment">
+        <option>Full-time</option>
+        <option>Part-time</option>
+        <option>Still in a lab or university</option>
+      </select>
+      <select name="referral">
+        <option>X</option>
+        <option>LinkedIn</option>
+        <option>Event or hackathon</option>
+        <option>Friend or referral</option>
+        <option>QuantumX Foundation</option>
+        <option>Search</option>
+        <option>Other</option>
+      </select>
+      <input name="support" />
+      <input name="raising" />
+      <input type="url" name="founderProfile" />
+      <input type="url" name="xProfile" />
+      <input type="url" name="github" />
+      <input type="url" name="website" />
+      <textarea name="pitch"></textarea>
       <input name="bot-field" />
     </form>
 

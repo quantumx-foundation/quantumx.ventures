@@ -14,6 +14,7 @@ import { pillars } from '@/content/ecosystem';
 import { people } from '@/content/people';
 import { formatInsightDate, insights, sortedInsights } from '@/content/insights';
 import { site } from '@/content/site';
+import { applyHref, foundershipHome, supportOptions } from '@/content/foundership';
 import { ArrowRight, ArrowUpRight } from '../icons';
 import { ArrowLink, ButtonLink, SmartLink } from '../ui';
 import { VentureList } from '../sections/ventures';
@@ -142,9 +143,38 @@ export function HomeVentures() {
   );
 }
 
+export function HomeFoundership() {
+  return (
+    <HomeSection index="05" label="Foundership Program" id="foundership">
+      <h2 id="foundership-title" className="max-w-[20ch] text-headline font-light" data-reveal>
+        {foundershipHome.heading}
+      </h2>
+      <p className="mt-8 max-w-xl text-lead text-muted" data-reveal>
+        {foundershipHome.lead}
+      </p>
+      <ul className="mt-10 flex flex-wrap gap-2 sm:mt-12 sm:gap-3" data-reveal>
+        {supportOptions.map((option) => (
+          <li
+            key={option}
+            className="inline-flex min-h-9 items-center gap-2 rounded-full border border-ink/30 px-3.5 text-sm text-ink/85 sm:min-h-11 sm:px-5 sm:text-[0.9375rem]"
+          >
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-copper" aria-hidden="true" />
+            {option}
+          </li>
+        ))}
+      </ul>
+      <div className="mt-12" data-reveal>
+        <ButtonLink href={applyHref} variant="solid">
+          {foundershipHome.cta}
+        </ButtonLink>
+      </div>
+    </HomeSection>
+  );
+}
+
 export function HomeProcess() {
   return (
-    <HomeSection index="05" label="How we build" id="process" labelIsHeading>
+    <HomeSection index="06" label="How we build" id="process" labelIsHeading>
       <ol className="relative grid grid-cols-1 lg:grid-cols-5 lg:gap-x-6">
         <span className="absolute bottom-3 left-[5px] top-3 w-px bg-line lg:hidden" aria-hidden="true" />
         <span className="absolute left-0 right-0 top-[5px] hidden h-px bg-line lg:block" aria-hidden="true" />
@@ -174,7 +204,7 @@ export function HomeProcess() {
 
 export function HomeEcosystem() {
   return (
-    <HomeSection index="06" label="Why QuantumX" id="ecosystem">
+    <HomeSection index="07" label="Why QuantumX" id="ecosystem">
       <h2 id="ecosystem-title" className="max-w-[16ch] text-headline font-light" data-reveal>
         {home.ecosystem.heading}
       </h2>
@@ -215,7 +245,7 @@ export function HomeEcosystem() {
 export function HomePeople() {
   if (people.length === 0) return null;
   return (
-    <HomeSection index="07" label="People" id="people">
+    <HomeSection index="08" label="People" id="people">
       <h2 id="people-title" className="text-headline font-light" data-reveal>
         {home.people.heading}
       </h2>
@@ -254,7 +284,7 @@ export function HomePeople() {
 export function HomeInsights() {
   const latest = sortedInsights(insights.filter((i) => i.featured)).slice(0, 3);
   return (
-    <HomeSection index="08" label="Insights" id="insights">
+    <HomeSection index="09" label="Insights" id="insights">
       <h2 id="insights-title" className="text-headline font-light" data-reveal>
         {home.insights.heading}
       </h2>
