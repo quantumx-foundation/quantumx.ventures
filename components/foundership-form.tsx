@@ -127,7 +127,7 @@ export function FoundershipForm() {
     if (support.length === 0) next.support = 'Pick at least one thing you are looking for.';
     if (wantsInvestment && !value('raising')) next.raising = 'Please give a rough amount, even a range.';
     if (!isUrl(value('founderProfile'))) next.founderProfile = 'Please add a link to your LinkedIn or founder profile.';
-    if (!isUrl(value('xProfile'))) next.xProfile = 'Please add a link to your X profile.';
+    if (value('xProfile') && !isUrl(value('xProfile'))) next.xProfile = 'That does not look like a link.';
     if (value('website') && !isUrl(value('website'))) next.website = 'That does not look like a link.';
     if (value('pitch').length < 20) next.pitch = 'A few sentences helps us understand what you are building.';
     return next;
@@ -367,14 +367,13 @@ export function FoundershipForm() {
 
       <div>
         <label htmlFor="xProfile" className={labelClass}>
-          X profile
+          X profile {optional}
         </label>
         <input
           id="xProfile"
           name="xProfile"
           type="url"
           inputMode="url"
-          required
           placeholder="x.com/…"
           aria-invalid={Boolean(errors.xProfile)}
           aria-describedby={describe('xProfile')}
