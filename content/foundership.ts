@@ -26,13 +26,18 @@ export const supportOptions = [
 
 export const stages = ['Idea', 'Research result', 'Prototype', 'Early customers', 'Revenue'] as const;
 
-/** Focus areas, following the thesis on /thesis/. */
+/** Focus areas founders can pick from. */
 export const focusAreas = [
-  'Quantum computing',
-  'Quantum software',
-  'Post-quantum security',
-  'Quantum sensing',
-  'Infrastructure and enabling technology',
+  'Quantum Computing',
+  'Quantum Communication & Networking',
+  'Quantum Sensing & Metrology',
+  'Quantum Materials & Devices',
+  'Quantum Software & Algorithms',
+  'Post-Quantum Cryptography & Quantum Security',
+  'Quantum AI & Machine Learning',
+  'Quantum Applications & Industry Solutions',
+  'Quantum Infrastructure & Enabling Technologies',
+  'Quantum Education & Workforce Development',
   'Other',
 ] as const;
 
