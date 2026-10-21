@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Hero } from '@/components/sections/hero';
 import {
+  HomeAssociates,
   HomeCapabilities,
   HomeCta,
   HomeEcosystem,
@@ -8,6 +9,7 @@ import {
   HomeInsights,
   HomePeople,
   HomeProcess,
+  HomeRooms,
   HomeStudio,
   HomeThesis,
   HomeVentures,
@@ -34,6 +36,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <HomeAssociates />
       <HomeStudio />
       <HomeCapabilities />
       <HomeThesis />
@@ -41,6 +44,7 @@ export default function HomePage() {
       <HomeFoundership />
       <HomeProcess />
       <HomeEcosystem />
+      <HomeRooms />
       <HomePeople />
       <HomeInsights />
       <HomeCta />

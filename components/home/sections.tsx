@@ -11,6 +11,8 @@ import { capabilities, process } from '@/content/studio';
 import { thesisAreas } from '@/content/thesis';
 import { ventures } from '@/content/ventures';
 import { pillars } from '@/content/ecosystem';
+import { associates, associatesIntro } from '@/content/associates';
+import { rooms, roomsIntro } from '@/content/rooms';
 import { people } from '@/content/people';
 import { formatInsightDate, insights, sortedInsights } from '@/content/insights';
 import { site } from '@/content/site';
@@ -47,6 +49,41 @@ function HomeSection({
           <span>{label}</span>
         </Label>
         <div className="col-span-12 lg:col-span-9">{children}</div>
+      </div>
+    </section>
+  );
+}
+
+/** Logo wall under the hero. Unnumbered, so it reads as proof rather than a chapter. */
+export function HomeAssociates() {
+  return (
+    <section id="associates" aria-labelledby="associates-title" className="border-t border-line py-[clamp(4.5rem,9vw,8rem)]">
+      <div className="container-site">
+        <div className="mx-auto max-w-2xl text-center" data-reveal>
+          <h2 id="associates-title" className="eyebrow text-copper">
+            {associatesIntro.label}
+          </h2>
+          <p className="mt-5 text-[1rem] leading-relaxed text-ink/85">{associatesIntro.body}</p>
+        </div>
+        <ul className="mx-auto mt-14 grid max-w-6xl grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-4 lg:mt-20 lg:gap-y-16" data-reveal>
+          {associates.map((associate) => (
+            <li key={associate.name} className="flex items-center justify-center">
+              <div
+                className={`relative w-full max-w-[9.5rem] opacity-60 transition-opacity duration-300 hover:opacity-100 ${
+                  associate.tall ? 'h-14 sm:h-[4.5rem]' : 'h-10 sm:h-12'
+                }`}
+              >
+                <Image
+                  src={associate.logo}
+                  alt={associate.name}
+                  fill
+                  sizes="160px"
+                  className="object-contain"
+                />
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
@@ -239,6 +276,40 @@ export function HomeEcosystem() {
         <ArrowLink href="/about/">About QuantumX Ventures</ArrowLink>
       </div>
     </HomeSection>
+  );
+}
+
+/** Where the team has run sessions. Names only, set as a hairline grid to sit apart from the logo wall. */
+export function HomeRooms() {
+  return (
+    <section id="rooms" aria-labelledby="rooms-title" className="border-t border-line py-[clamp(4.5rem,9vw,8rem)]">
+      <div className="container-site">
+        <div className="mx-auto max-w-2xl text-center" data-reveal>
+          <h2 id="rooms-title" className="eyebrow text-copper">
+            {roomsIntro.label}
+          </h2>
+          <p className="mt-5 text-[1rem] leading-relaxed text-ink/85">{roomsIntro.body}</p>
+        </div>
+        <ul
+          className="mx-auto mt-14 grid max-w-6xl grid-cols-2 gap-px border border-line bg-line sm:grid-cols-3 lg:mt-20 lg:grid-cols-4"
+          data-reveal
+        >
+          {rooms.map((room) => (
+            <li
+              key={room.name}
+              className="relative flex min-h-28 items-center justify-center bg-paper px-4 py-8 text-center text-[0.9375rem] leading-snug text-ink/70 transition-colors duration-300 hover:bg-raised hover:text-ink sm:text-[1rem]"
+            >
+              {room.note ? (
+                <span className="absolute left-3 top-3 text-[0.625rem] uppercase tracking-[0.14em] text-copper">
+                  {room.note}
+                </span>
+              ) : null}
+              {room.name}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
   );
 }
 
