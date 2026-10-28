@@ -2,7 +2,7 @@
 # Generates the 1200x630 Open Graph images in public/og/.
 #
 # Requires ffmpeg (with libfreetype) and curl. Poppins is downloaded from the
-# Google Fonts repository on first run and cached in .cache/fonts/.
+# Google Fonts repository on first run and cached in node_modules/.cache/og-fonts/.
 #
 # Usage: npm run og
 #
@@ -16,7 +16,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-FONTS="$ROOT/.cache/fonts"
+FONTS="$ROOT/node_modules/.cache/og-fonts"
 OUT="$ROOT/public/og"
 IMAGE="$ROOT/public/images/dilution-refrigerator.webp"
 

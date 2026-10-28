@@ -8,4 +8,3 @@ next-env.d.ts
 
 # Third-party design reference screenshots: keep local, never publish
 design/references/
-.cache
