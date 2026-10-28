@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type FormEvent } from 'react';
+import { useRef, useState, type FormEvent } from 'react';
 import {
   commitments,
   focusAreas,
@@ -10,8 +10,10 @@ import {
   teamSizes,
 } from '@/content/foundership';
 import { site } from '@/content/site';
-import { EMAIL_PATTERN, submitNetlifyForm } from '@/lib/netlify-form';
+import { EMAIL_PATTERN, MAX_LENGTH, submitNetlifyForm } from '@/lib/netlify-form';
+import { recaptchaEnabled } from '@/lib/recaptcha';
 import { ArrowRight, ChevronDown } from './icons';
+import { Recaptcha, type RecaptchaHandle } from './recaptcha';
 
 type Status = 'idle' | 'sending' | 'sent' | 'error';
 type Field =
@@ -27,7 +29,8 @@ type Field =
   | 'founderProfile'
   | 'xProfile'
   | 'website'
-  | 'pitch';
+  | 'pitch'
+  | 'captcha';
 type Errors = Partial<Record<Field, string>>;
 
 const fieldClass =
@@ -101,6 +104,7 @@ function isUrl(value: string) {
 }
 
 export function FoundershipForm() {
+  const captcha = useRef<RecaptchaHandle>(null);
   const [status, setStatus] = useState<Status>('idle');
   const [errors, setErrors] = useState<Errors>({});
   const [support, setSupport] = useState<string[]>([]);
@@ -130,6 +134,7 @@ export function FoundershipForm() {
     if (value('xProfile') && !isUrl(value('xProfile'))) next.xProfile = 'That does not look like a link.';
     if (value('website') && !isUrl(value('website'))) next.website = 'That does not look like a link.';
     if (value('pitch').length < 20) next.pitch = 'A few sentences helps us understand what you are building.';
+    if (recaptchaEnabled && !captcha.current?.getToken()) next.captcha = 'Please confirm you are not a robot.';
     return next;
   }
 
@@ -152,6 +157,7 @@ export function FoundershipForm() {
       setSupport([]);
       form.reset();
     } catch {
+      captcha.current?.reset();
       setStatus('error');
     }
   }
@@ -184,7 +190,8 @@ export function FoundershipForm() {
       name="foundership"
       method="POST"
       data-netlify="true"
-      netlify-honeypot="bot-field"
+      netlify-honeypot="fax_number"
+      data-netlify-recaptcha={recaptchaEnabled ? 'true' : undefined}
       noValidate
       onSubmit={onSubmit}
       aria-busy={status === 'sending'}
@@ -195,7 +202,7 @@ export function FoundershipForm() {
       <p className="hidden">
         <label>
           Leave this field empty
-          <input name="bot-field" tabIndex={-1} autoComplete="off" />
+          <input name="fax_number" tabIndex={-1} autoComplete="off" />
         </label>
       </p>
 
@@ -208,6 +215,7 @@ export function FoundershipForm() {
           name="name"
           type="text"
           autoComplete="name"
+          maxLength={MAX_LENGTH.name}
           required
           aria-invalid={Boolean(errors.name)}
           aria-describedby={describe('name')}
@@ -226,6 +234,7 @@ export function FoundershipForm() {
           type="email"
           inputMode="email"
           autoComplete="email"
+          maxLength={MAX_LENGTH.email}
           required
           aria-invalid={Boolean(errors.email)}
           aria-describedby={describe('email')}
@@ -244,6 +253,7 @@ export function FoundershipForm() {
           type="tel"
           inputMode="tel"
           autoComplete="tel"
+          maxLength={MAX_LENGTH.phone}
           required
           placeholder="+91 …"
           aria-invalid={Boolean(errors.phone)}
@@ -262,6 +272,7 @@ export function FoundershipForm() {
           name="location"
           type="text"
           autoComplete="address-level2"
+          maxLength={MAX_LENGTH.short}
           required
           placeholder="Bengaluru, India"
           aria-invalid={Boolean(errors.location)}
@@ -281,7 +292,14 @@ export function FoundershipForm() {
         <label htmlFor="company" className={labelClass}>
           Startup or project name {optional}
         </label>
-        <input id="company" name="company" type="text" autoComplete="organization" className={fieldClass} />
+        <input
+          id="company"
+          name="company"
+          type="text"
+          autoComplete="organization"
+          maxLength={MAX_LENGTH.short}
+          className={fieldClass}
+        />
       </div>
 
       <Select name="stage" label="Stage" options={stages} defaultValue="Idea" required />
@@ -331,6 +349,7 @@ export function FoundershipForm() {
             id="raising"
             name="raising"
             type="text"
+            maxLength={MAX_LENGTH.short}
             required
             placeholder="For example, ₹50 lakh or $250k"
             aria-invalid={Boolean(errors.raising)}
@@ -356,6 +375,7 @@ export function FoundershipForm() {
           name="founderProfile"
           type="url"
           inputMode="url"
+          maxLength={MAX_LENGTH.url}
           required
           placeholder="linkedin.com/in/…"
           aria-invalid={Boolean(errors.founderProfile)}
@@ -374,6 +394,7 @@ export function FoundershipForm() {
           name="xProfile"
           type="url"
           inputMode="url"
+          maxLength={MAX_LENGTH.url}
           placeholder="x.com/…"
           aria-invalid={Boolean(errors.xProfile)}
           aria-describedby={describe('xProfile')}
@@ -386,7 +407,7 @@ export function FoundershipForm() {
         <label htmlFor="github" className={labelClass}>
           GitHub or Google Scholar {optional}
         </label>
-        <input id="github" name="github" type="url" inputMode="url" className={fieldClass} />
+        <input id="github" name="github" type="url" inputMode="url" maxLength={MAX_LENGTH.url} className={fieldClass} />
       </div>
 
       <div>
@@ -398,6 +419,7 @@ export function FoundershipForm() {
           name="website"
           type="url"
           inputMode="url"
+          maxLength={MAX_LENGTH.url}
           aria-invalid={Boolean(errors.website)}
           aria-describedby={describe('website')}
           className={fieldClass}
@@ -413,6 +435,7 @@ export function FoundershipForm() {
           id="pitch"
           name="pitch"
           rows={4}
+          maxLength={MAX_LENGTH.long}
           required
           aria-invalid={Boolean(errors.pitch)}
           aria-describedby={describe('pitch') ?? 'pitch-hint'}
@@ -427,6 +450,13 @@ export function FoundershipForm() {
           </p>
         )}
       </div>
+
+      {recaptchaEnabled ? (
+        <div className="sm:col-span-2">
+          <Recaptcha ref={captcha} onVerify={() => setErrors((e) => ({ ...e, captcha: undefined }))} />
+          {error('captcha')}
+        </div>
+      ) : null}
 
       <div className="flex flex-col gap-5 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
         <button

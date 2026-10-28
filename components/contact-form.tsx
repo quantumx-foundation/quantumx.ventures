@@ -2,13 +2,15 @@
 
 import { useRef, useState, type FormEvent } from 'react';
 import { site } from '@/content/site';
-import { EMAIL_PATTERN, submitNetlifyForm } from '@/lib/netlify-form';
+import { EMAIL_PATTERN, MAX_LENGTH, submitNetlifyForm } from '@/lib/netlify-form';
+import { recaptchaEnabled } from '@/lib/recaptcha';
 import { ArrowRight } from './icons';
+import { Recaptcha, type RecaptchaHandle } from './recaptcha';
 
 const roles = ['Founder', 'Researcher', 'Technical team', 'Partner or investor', 'Other'] as const;
 
 type Status = 'idle' | 'sending' | 'sent' | 'error';
-type Errors = Partial<Record<'name' | 'email' | 'message', string>>;
+type Errors = Partial<Record<'name' | 'email' | 'message' | 'captcha', string>>;
 
 const fieldClass =
   'block w-full border-0 border-b border-ink/25 bg-transparent px-0 py-3 text-[1.0625rem] font-light text-ink placeholder:text-subtle transition-colors duration-300 hover:border-ink/50 focus:border-ink focus:outline-none focus:ring-0 aria-[invalid=true]:border-[#e0806b]';
@@ -17,6 +19,7 @@ const labelClass = 'eyebrow block';
 
 export function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
+  const captcha = useRef<RecaptchaHandle>(null);
   const [status, setStatus] = useState<Status>('idle');
   const [errors, setErrors] = useState<Errors>({});
 
@@ -27,6 +30,7 @@ export function ContactForm() {
     if (!EMAIL_PATTERN.test(String(data.get('email') ?? '').trim())) next.email = 'Please enter a valid email address.';
     if (String(data.get('message') ?? '').trim().length < 20)
       next.message = 'A few sentences helps us understand what you are working on.';
+    if (recaptchaEnabled && !captcha.current?.getToken()) next.captcha = 'Please confirm you are not a robot.';
     return next;
   }
 
@@ -47,6 +51,7 @@ export function ContactForm() {
       setStatus('sent');
       form.reset();
     } catch {
+      captcha.current?.reset();
       setStatus('error');
     }
   }
@@ -77,7 +82,8 @@ export function ContactForm() {
       name="venture-inquiry"
       method="POST"
       data-netlify="true"
-      netlify-honeypot="bot-field"
+      netlify-honeypot="fax_number"
+      data-netlify-recaptcha={recaptchaEnabled ? 'true' : undefined}
       noValidate
       onSubmit={onSubmit}
       aria-busy={status === 'sending'}
@@ -87,7 +93,7 @@ export function ContactForm() {
       <p className="hidden">
         <label>
           Leave this field empty
-          <input name="bot-field" tabIndex={-1} autoComplete="off" />
+          <input name="fax_number" tabIndex={-1} autoComplete="off" />
         </label>
       </p>
 
@@ -100,6 +106,7 @@ export function ContactForm() {
           name="name"
           type="text"
           autoComplete="name"
+          maxLength={MAX_LENGTH.name}
           required
           aria-invalid={Boolean(errors.name)}
           aria-describedby={describe('name')}
@@ -122,6 +129,7 @@ export function ContactForm() {
           type="email"
           inputMode="email"
           autoComplete="email"
+          maxLength={MAX_LENGTH.email}
           required
           aria-invalid={Boolean(errors.email)}
           aria-describedby={describe('email')}
@@ -138,7 +146,14 @@ export function ContactForm() {
         <label htmlFor="organisation" className={labelClass}>
           Organisation <span className="normal-case tracking-normal text-subtle">(optional)</span>
         </label>
-        <input id="organisation" name="organisation" type="text" autoComplete="organization" className={fieldClass} />
+        <input
+          id="organisation"
+          name="organisation"
+          type="text"
+          autoComplete="organization"
+          maxLength={MAX_LENGTH.short}
+          className={fieldClass}
+        />
       </div>
 
       <div>
@@ -162,6 +177,7 @@ export function ContactForm() {
           id="message"
           name="message"
           rows={5}
+          maxLength={MAX_LENGTH.long}
           required
           aria-invalid={Boolean(errors.message)}
           aria-describedby={describe('message') ?? 'message-hint'}
@@ -178,6 +194,17 @@ export function ContactForm() {
           </p>
         )}
       </div>
+
+      {recaptchaEnabled ? (
+        <div className="sm:col-span-2">
+          <Recaptcha ref={captcha} onVerify={() => setErrors((e) => ({ ...e, captcha: undefined }))} />
+          {errors.captcha ? (
+            <p id="captcha-error" className="mt-2 text-sm text-[#e0806b]">
+              {errors.captcha}
+            </p>
+          ) : null}
+        </div>
+      ) : null}
 
       <div className="flex flex-col gap-5 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
         <button

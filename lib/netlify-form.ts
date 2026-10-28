@@ -25,4 +25,10 @@ export async function submitNetlifyForm(form: HTMLFormElement): Promise<void> {
   }
 }
 
-export const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+/**
+ * Maximum field lengths. Netlify stores whatever is posted, so these only stop
+ * honest mistakes and simple bots; reCAPTCHA is the real gate.
+ */
+export const MAX_LENGTH = { name: 100, email: 254, phone: 30, short: 150, url: 300, long: 5000 } as const;
+
+export const EMAIL_PATTERN =/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;

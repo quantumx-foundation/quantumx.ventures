@@ -1,7 +1,7 @@
 # QuantumX Ventures
 
 Website for QuantumX Ventures, the venture studio of QuantumX Foundation.
-Next.js 14 (App Router), TypeScript and Tailwind CSS, exported as a static site
+Next.js 16 (App Router), TypeScript and Tailwind CSS, exported as a static site
 for Netlify.
 
 ## Commands
@@ -56,12 +56,28 @@ Forms are handled by Netlify Forms and are registered from the static copies in
 `public/__forms.html`:
 
 - `venture-inquiry`: the contact form on `/contact/`.
+- `foundership`: the Foundership application on `/foundership-apply/`.
 - `waitlist`: the footer updates sign-up. Same form name as the original
   waitlist page, so existing submissions stay in one place.
 
 Forms only submit on a Netlify deployment. Elsewhere they show an error with
 the contact email instead of a false success. Enable form notifications in the
 Netlify dashboard so submissions reach an inbox.
+
+### Spam protection
+
+- **Honeypot:** a hidden `fax_number` field. Keep the name in sync across the
+  three form components and `public/__forms.html`.
+- **reCAPTCHA v2 (checkbox):** off until a key is set. Create a v2 checkbox key
+  for `quantumx.ventures` (add `localhost` for testing), then add two Netlify
+  environment variables:
+  - `SITE_RECAPTCHA_KEY`: the site key. Scopes: Builds and Runtime.
+  - `SITE_RECAPTCHA_SECRET`: the secret key. Scope: Runtime.
+
+  Redeploy. The build shows the widget in all three forms and marks the forms
+  as reCAPTCHA-protected (`scripts/enable-form-recaptcha.mjs`), and Netlify
+  then drops any submission without a valid token. The footer widget appears
+  only once someone starts typing an email.
 
 ## Deployment
 

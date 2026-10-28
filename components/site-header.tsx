@@ -25,10 +25,13 @@ export function SiteHeader() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Close the menu whenever the route changes.
-  useEffect(() => {
+  // Close the menu whenever the route changes. Done during render, not in an
+  // effect, so the closed menu never paints open for a frame.
+  const [menuPath, setMenuPath] = useState(pathname);
+  if (menuPath !== pathname) {
+    setMenuPath(pathname);
     setOpen(false);
-  }, [pathname]);
+  }
 
   // While the menu is open: lock scroll, close on Escape, keep focus inside.
   useEffect(() => {

@@ -1,18 +1,24 @@
 'use client';
 
-import { useId, useState, type FormEvent } from 'react';
-import { EMAIL_PATTERN, submitNetlifyForm } from '@/lib/netlify-form';
+import { useId, useRef, useState, type FormEvent } from 'react';
+import { EMAIL_PATTERN, MAX_LENGTH, submitNetlifyForm } from '@/lib/netlify-form';
+import { recaptchaEnabled } from '@/lib/recaptcha';
 import { ArrowRight } from './icons';
+import { Recaptcha, type RecaptchaHandle } from './recaptcha';
 
-type Status = 'idle' | 'sending' | 'sent' | 'error' | 'invalid';
+type Status = 'idle' | 'sending' | 'sent' | 'error' | 'invalid' | 'captcha';
 
 /**
  * Email sign-up for studio updates. Posts to the "waitlist" Netlify form used
  * by the original QuantumX Ventures page, so the existing list keeps growing.
+ * The reCAPTCHA box appears once someone starts typing, so the footer stays
+ * light and the script only loads for people signing up.
  */
 export function UpdatesForm() {
   const id = useId();
   const [status, setStatus] = useState<Status>('idle');
+  const [showCaptcha, setShowCaptcha] = useState(false);
+  const captcha = useRef<RecaptchaHandle>(null);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -23,12 +29,19 @@ export function UpdatesForm() {
       form.querySelector<HTMLInputElement>('input[name="email"]')?.focus();
       return;
     }
+    if (recaptchaEnabled && !captcha.current?.getToken()) {
+      setShowCaptcha(true);
+      setStatus('captcha');
+      return;
+    }
     setStatus('sending');
     try {
       await submitNetlifyForm(form);
       setStatus('sent');
+      setShowCaptcha(false);
       form.reset();
     } catch {
+      captcha.current?.reset();
       setStatus('error');
     }
   }
@@ -37,15 +50,24 @@ export function UpdatesForm() {
     sent: 'You are on the list. We will write when there is something worth sharing.',
     error: 'That did not go through. Please try again in a moment.',
     invalid: 'Please enter a valid email address.',
+    captcha: 'Please confirm you are not a robot.',
   };
 
   return (
-    <form name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" noValidate onSubmit={onSubmit}>
+    <form
+      name="waitlist"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="fax_number"
+      data-netlify-recaptcha={recaptchaEnabled ? 'true' : undefined}
+      noValidate
+      onSubmit={onSubmit}
+    >
       <input type="hidden" name="form-name" value="waitlist" />
       <p className="hidden">
         <label>
           Leave this field empty
-          <input name="bot-field" tabIndex={-1} autoComplete="off" />
+          <input name="fax_number" tabIndex={-1} autoComplete="off" />
         </label>
       </p>
       <label htmlFor={`${id}-email`} className="sr-only">
@@ -59,7 +81,9 @@ export function UpdatesForm() {
           inputMode="email"
           autoComplete="email"
           placeholder="Your email"
+          maxLength={MAX_LENGTH.email}
           required
+          onInput={recaptchaEnabled ? () => setShowCaptcha(true) : undefined}
           aria-invalid={status === 'invalid'}
           aria-describedby={`${id}-status`}
           className="min-w-0 flex-1 border-0 bg-transparent px-0 py-3 text-[1.0625rem] font-light text-ink placeholder:text-subtle focus:outline-none focus:ring-0"
@@ -73,6 +97,11 @@ export function UpdatesForm() {
           <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
         </button>
       </div>
+      {showCaptcha ? (
+        <div className="mt-4">
+          <Recaptcha ref={captcha} onVerify={() => setStatus((s) => (s === 'captcha' ? 'idle' : s))} />
+        </div>
+      ) : null}
       <p id={`${id}-status`} role="status" aria-live="polite" className="mt-3 min-h-[1.25rem] text-sm text-muted">
         {messages[status] ?? ''}
       </p>
