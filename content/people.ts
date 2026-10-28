@@ -40,21 +40,6 @@ export const people: readonly Person[] = [
     x: 'https://x.com/ajmalphyx',
   },
   {
-    name: 'Muhammed Ameen Sulaiman',
-    role: 'Co-Founder & CTO',
-    summary:
-      'Leads technology, product and engineering at QuantumX, from system architecture to deployment. Works with researchers and engineers to turn quantum research into platforms, developer infrastructure and research tooling.',
-    photo: {
-      src: '/images/people/ameen.webp',
-      alt: 'Portrait of Muhammed Ameen Sulaiman',
-      width: 800,
-      height: 800,
-    },
-    profileUrl: 'https://quantumx.foundation/founder/ameen/',
-    linkedin: 'https://www.linkedin.com/in/ameenx/',
-    x: 'https://x.com/emeenx',
-  },
-  {
     name: 'Abdul Samad',
     role: 'Co-Founder & Venture Architect',
     summary:
@@ -68,5 +53,20 @@ export const people: readonly Person[] = [
     profileUrl: 'https://quantumx.foundation/founder/samad/',
     linkedin: 'https://www.linkedin.com/in/4samad/',
     x: 'https://x.com/_4samad',
+  },
+  {
+    name: 'Muhammed Ameen Sulaiman',
+    role: 'Co-Founder & CTO',
+    summary:
+      'Leads technology, product and engineering at QuantumX, from system architecture to deployment. Works with researchers and engineers to turn quantum research into platforms, developer infrastructure and research tooling.',
+    photo: {
+      src: '/images/people/ameen.webp',
+      alt: 'Portrait of Muhammed Ameen Sulaiman',
+      width: 800,
+      height: 800,
+    },
+    profileUrl: 'https://quantumx.foundation/founder/ameen/',
+    linkedin: 'https://www.linkedin.com/in/ameenx/',
+    x: 'https://x.com/emeenx',
   },
 ];
