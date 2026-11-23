@@ -30,7 +30,7 @@ export const people: readonly Person[] = [
     summary:
       'Leads QuantumX and its scientific agenda across photonic device design, circuit-level tooling and post-quantum cryptography, alongside doctoral research in Molecular Quantum Mechanics.',
     photo: {
-      src: '/images/people/ajmal.webp',
+      src: '/images/people/ajmal-4bdf6bde.webp',
       alt: 'Portrait of Ajmal Ibn Mohammed Althaf',
       width: 800,
       height: 800,
