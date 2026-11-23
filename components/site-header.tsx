@@ -82,7 +82,7 @@ export function SiteHeader() {
       >
         <div className="container-site flex h-[var(--header-h)] items-center justify-between gap-6">
           <Link href="/" className="relative z-10 -mx-2 flex min-h-11 items-center px-2" aria-label={`${site.name}, home`}>
-            <Logo />
+            <Logo className="h-9 sm:h-10" />
           </Link>
   
           <nav aria-label="Primary" className="hidden lg:block">

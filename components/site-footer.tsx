@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { primaryCta, primaryNav, site } from '@/content/site';
-import { LogoMark } from './logo';
+import { Logo } from './logo';
 import { ArrowUpRight } from './icons';
 import { UpdatesForm } from './updates-form';
 
@@ -84,11 +84,8 @@ export function SiteFooter() {
         </div>
 
         {/* Oversized wordmark, sized to the container width. */}
-        <div className="mt-[clamp(4rem,9vw,8rem)] flex items-end gap-[2.2vw] text-ink" aria-hidden="true">
-          <LogoMark className="h-[clamp(2.4rem,10.4vw,11rem)] w-auto shrink-0" />
-          <p className="whitespace-nowrap text-[clamp(2.6rem,11.2vw,12rem)] font-normal leading-[0.78] tracking-[-0.055em]">
-            QuantumX
-          </p>
+        <div className="mt-[clamp(4rem,9vw,8rem)]" aria-hidden="true">
+          <Logo className="h-auto max-w-full" />
         </div>
 
         <div className="mt-10 flex flex-col gap-4 border-t border-line py-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
